@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-const PHONE = '(604) 555-0192'
-const PHONE_HREF = 'tel:+16045550192'
-const EMAIL = 'dave@drdavecomputer.com'
+const PHONE = '(604) 783-7296'
+const PHONE_HREF = 'tel:+16047837296'
+const EMAIL = 'calmacc@gmail.com'
 
 function Navbar() {
   const [open, setOpen] = useState(false)
@@ -10,12 +10,26 @@ function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/30">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white font-black text-sm">Rx</div>
-          <span className="font-bold text-white text-sm sm:text-base leading-tight">
-            Dr Dave<br />
-            <span className="text-red-400 font-normal text-xs">Computer Remedies</span>
-          </span>
+        <a href="#home" className="flex items-center gap-2.5">
+          {/* Stethoscope SVG icon */}
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+            {/* Stethoscope earpiece left */}
+            <circle cx="10" cy="7" r="3" stroke="#dc2626" strokeWidth="2" fill="none"/>
+            {/* Stethoscope earpiece right */}
+            <circle cx="34" cy="7" r="3" stroke="#dc2626" strokeWidth="2" fill="none"/>
+            {/* Headset arc */}
+            <path d="M10 10 C10 18 14 22 22 22 C30 22 34 18 34 10" stroke="#dc2626" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            {/* Tube down */}
+            <path d="M22 22 L22 33" stroke="#dc2626" strokeWidth="2" strokeLinecap="round"/>
+            {/* Chest piece circle */}
+            <circle cx="22" cy="37" r="4" stroke="#dc2626" strokeWidth="2" fill="#dc2626" fillOpacity="0.15"/>
+            <circle cx="22" cy="37" r="1.5" fill="#dc2626"/>
+          </svg>
+          <div className="leading-tight">
+            <div className="font-black text-white text-base sm:text-lg tracking-tight uppercase">Doctor Dave</div>
+            <div className="text-red-400 font-semibold text-[10px] sm:text-xs uppercase tracking-widest">Computer Remedies</div>
+            <div className="text-gray-600 text-[9px] hidden sm:block">www.doctordave.com</div>
+          </div>
         </a>
 
         {/* Desktop Nav */}
@@ -319,112 +333,53 @@ function Trust() {
   )
 }
 
-const plans = [
-  {
-    name: 'Quick Fix',
-    price: '$79',
-    unit: '/visit',
-    desc: 'Perfect for a single issue — virus removal, printer setup, Wi-Fi troubleshooting.',
-    features: [
-      'Single issue diagnosis',
-      'Up to 1 hour on-site',
-      'Basic security check',
-      'Same-day availability',
-    ],
-    cta: 'Book a Quick Fix',
-    highlight: false,
-  },
-  {
-    name: 'Full Tune-Up',
-    price: '$149',
-    unit: '/visit',
-    desc: 'Comprehensive service for multiple issues — performance, security, backups.',
-    features: [
-      'Full system diagnostic',
-      'Up to 3 hours on-site',
-      'Virus & malware scan',
-      'Backup configuration',
-      'Performance optimization',
-      'Priority scheduling',
-    ],
-    cta: 'Book a Tune-Up',
-    highlight: true,
-  },
-  {
-    name: 'Business Support',
-    price: '$199',
-    unit: '/mo',
-    desc: 'Ongoing IT support for small businesses — your own IT department, on demand.',
-    features: [
-      'Unlimited remote support',
-      '2 on-site visits/month',
-      'Proactive monitoring',
-      'Network management',
-      'Staff tech support',
-      'Monthly reports',
-    ],
-    cta: 'Get Business Plan',
-    highlight: false,
-  },
-]
-
 function Pricing() {
   return (
     <section id="pricing" className="py-24 bg-[#080808]">
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-2xl mx-auto px-4">
         <SectionHeader
           eyebrow="Transparent Pricing"
           title="No Surprises, No Hidden Fees"
-          subtitle="Service calls starting at $79. Know what you pay before we start."
+          subtitle="Simple, honest hourly rate. You only pay for the time it takes."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`relative rounded-2xl p-7 border transition-all duration-300 ${
-                plan.highlight
-                  ? 'bg-red-950/30 border-red-600/50 glow-red scale-[1.02]'
-                  : 'bg-zinc-900/60 border-zinc-800 card-glow'
-              }`}
-            >
-              {plan.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-xs font-bold px-4 py-1 rounded-full">
-                  MOST POPULAR
-                </div>
-              )}
-              <div className="mb-5">
-                <div className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-2">{plan.name}</div>
-                <div className="flex items-end gap-1">
-                  <span className="text-4xl font-black text-white">{plan.price}</span>
-                  <span className="text-gray-500 text-sm mb-1">{plan.unit}</span>
-                </div>
-                <p className="text-gray-500 text-sm mt-2 leading-relaxed">{plan.desc}</p>
-              </div>
-              <ul className="space-y-2.5 mb-7">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-gray-300">
-                    <CheckIcon className="w-4 h-4 text-red-400 flex-shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#booking"
-                className={`block text-center font-bold py-3 px-6 rounded-full transition-all text-sm ${
-                  plan.highlight
-                    ? 'bg-red-600 hover:bg-red-500 text-white glow-red-sm'
-                    : 'border border-zinc-700 hover:border-red-600 text-white hover:bg-red-950/20'
-                }`}
-              >
-                {plan.cta}
-              </a>
+        <div className="mt-12 flex justify-center">
+          <div className="w-full bg-red-950/30 border border-red-600/50 rounded-2xl p-10 glow-red text-center">
+            <div className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-4">Hourly Rate</div>
+            <div className="flex items-end justify-center gap-2 mb-3">
+              <span className="text-7xl font-black text-white">$125</span>
+              <span className="text-gray-400 text-xl mb-3">/hour</span>
             </div>
-          ))}
+            <p className="text-gray-400 leading-relaxed mb-8 max-w-md mx-auto">
+              All services billed at a single flat rate — no call-out fees, no hidden charges. You know exactly what you're paying from the start.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left mb-10 max-w-sm mx-auto">
+              {[
+                'On-site home & office visits',
+                'All services included',
+                'No call-out fees',
+                'Same-day availability',
+                'Honest time estimates upfront',
+                'Pay only for time used',
+              ].map((f) => (
+                <li key={f} className="flex items-center gap-2 text-sm text-gray-300">
+                  <CheckIcon className="w-4 h-4 text-red-400 flex-shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#booking"
+              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold px-10 py-4 rounded-full transition-all glow-red-sm text-base"
+            >
+              Book a Service Call
+              <ArrowRightIcon className="w-5 h-5" />
+            </a>
+          </div>
         </div>
 
         <p className="text-center text-gray-600 text-sm mt-8">
-          Not sure which plan? <a href={PHONE_HREF} className="text-red-400 hover:text-red-300 underline underline-offset-2">Call us</a> — we'll recommend the right fit for free.
+          Questions about pricing? <a href={PHONE_HREF} className="text-red-400 hover:text-red-300 underline underline-offset-2">Call or text us</a> — free estimate, no obligation.
         </p>
       </div>
     </section>
